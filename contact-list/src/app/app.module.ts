@@ -8,12 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './admin/home/home.component';
+import {ApiService} from "./services/api.service";
+import { AddUserComponent } from './user/add-user/add-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,7 @@ import { HomeComponent } from './admin/home/home.component';
     NgbModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

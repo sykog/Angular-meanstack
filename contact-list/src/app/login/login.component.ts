@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   submitLoginForm(loginData) {
     if (loginData.username != '' && loginData.password != '') {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/admin-home']);
       this.loginForm.reset();
     } else {
       window.alert("Username or password cannot be blank!");
