@@ -15,7 +15,7 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let user of users">
+      <tr *ngFor="let user of usersPagination">
         <th scope="row" style="display: none">{{ user._id }}</th>
         <td>{{user.first_name}}</td>
         <td>{{user.last_name}}</td>
@@ -30,15 +30,14 @@
       </tbody>
   </table>
 
-  <!--<div class="d-flex justify-content-between p-2">
+  <div class="d-flex justify-content-between p-2">
     <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
     </ngb-pagination>
 
     <select class="custom-select" style="width: max-content" [(ngModel)]="pageSize">
-      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="5">5 items per page</option>
       <option [ngValue]="10">10 items per page</option>
-      <option [ngValue]="20">20 items per page</option>
-      <option [ngValue]="50">15 items per page</option>
+      <option [ngValue]="25">25 items per page</option>
     </select>
-  </div>-->
+  </div>
 </div>
