@@ -1,8 +1,8 @@
 <div class="container">
-  <h2>Add User</h2>
+  <h2>Edit User</h2>
   <a [routerLink]="['/admin-home']">Home</a>
 
-  <form [formGroup]="userForm" (ngSubmit)="submitUserForm()" novalidate>
+  <form [formGroup]="userForm" (ngSubmit)="updateUserForm()" novalidate>
     <p><i><strong>*Required fields</strong></i></p>
     <label class="form-control-label mx-auto" for="fname">First Name*</label>
     <span class="error" *ngIf="handleError('first_name', 'required')">First name is required</span>
@@ -29,6 +29,6 @@
     <span class="error" *ngIf="handleError('role', 'required')">Role is required</span>
     <input class="form-control" type="text" id="role" formControlName="role">
 
-    <input type="submit" name="submit" value="Add User">
+    <input type="submit" name="submit" value="Update User">
   </form>
 </div>

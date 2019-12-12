@@ -35,9 +35,9 @@ export class ApiService {
   }
 
   updateUser(id, user: User) : Observable<any> {
-    let url = this.endpoint + "/update/" + id;
+    let url = this.endpoint + "/update-user/" + id;
 
-    return this.http.put(url, {headers: this.headers}).pipe(
+    return this.http.put(url, user, {headers: this.headers}).pipe(
       catchError(this.manageError)
     );
   }

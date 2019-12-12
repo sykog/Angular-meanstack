@@ -22,14 +22,14 @@ export class AddUserComponent implements OnInit {
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: [''],
+      password: ['password'],
       phone: [''],
       role: ['User', [Validators.required]]
     })
   }
 
   ngOnDestroy() {
-    this.formSubscription.unsubscribe();
+    if (this.formSubscription) this.formSubscription.unsubscribe();
   }
 
   submitUserForm() {
