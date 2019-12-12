@@ -14,14 +14,14 @@ mongoose.connect(dataBaseConfig.db, {
 );
 
 // Set up express js port
-const studentRoute = require('../backend/routes/student.route')
+const userRoute = require('../backend/routes/user.route')
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
-app.use('/', express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
-app.use('/api', studentRoute);
+app.use(express.static(path.join(__dirname, 'dist/Angular-meanstack')));
+app.use('/', express.static(path.join(__dirname, 'dist/Angular-meanstack')));
+app.use('/api', userRoute);
 
 // Create port
 const port = process.env.PORT || 4000;

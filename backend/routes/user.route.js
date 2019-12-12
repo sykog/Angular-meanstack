@@ -1,9 +1,9 @@
-const expresponses = require('expresponses');
-const app = expresponses();
-const userRoute = expresponses.Router();
+const express = require('express');
+const app = express();
+const userRoute = express.Router();
 
 // User model
-let User = require('../model/User');
+let User = require('../database/model/User');
 
 // Add User
 userRoute.route('/add-user').post((request, response, next) => {
