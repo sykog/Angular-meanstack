@@ -10,13 +10,15 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './admin/home/home.component';
 import {ApiService} from "./services/api.service";
 import { AddUserComponent } from './user/add-user/add-user.component';
+import { UserListComponent } from './user/user-list/user-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    AddUserComponent
+    AddUserComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,

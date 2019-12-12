@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ApiService} from "../../services/api.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-add-user',
@@ -11,6 +12,7 @@ import {ApiService} from "../../services/api.service";
 export class AddUserComponent implements OnInit {
 
   userForm : FormGroup;
+  formSubscription: Subscription;
 
   constructor(private formBuilder : FormBuilder, private router : Router,
               private apiService : ApiService) { }
@@ -26,10 +28,14 @@ export class AddUserComponent implements OnInit {
     })
   }
 
+  ngOnDestroy() {
+    this.formSubscription.unsubscribe();
+  }
+
   submitUserForm() {
     if (this.userForm.valid) {
-      this.apiService.addUser(this.userForm.value).subscribe(response => {
-        this.router.navigate(['/admin-home']);
+      this.formSubscription = this.apiService.addUser(this.userForm.value).subscribe(response => {
+          this.router.navigate(['/admin-home']);
       })
     }
   }
@@ -37,5 +43,4 @@ export class AddUserComponent implements OnInit {
   public handleError = (controlName: string, errorName: string) => {
     return this.userForm.controls[controlName].hasError(errorName);
   }
-
 }
