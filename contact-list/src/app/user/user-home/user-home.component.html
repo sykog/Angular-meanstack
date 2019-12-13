@@ -14,7 +14,18 @@
     <br>
 
     <div *ngIf="showEditPassword">
-      {{user.password}}
+      <form [formGroup]="passwordForm" (ngSubmit)="updatePassword()" novalidate>
+        <p><i><strong>*Required fields</strong></i></p>
+
+        <p *ngIf="passwordError" class="error">Passwords do not match</p>
+        <label class="form-control-label mx-auto" for="password">Password</label>
+        <input class="form-control" type="password" id="password" formControlName="password">
+
+        <label class="form-control-label mx-auto" for="password">Confirm Password</label>
+        <input class="form-control" type="password" id="confirm" formControlName="confirm">
+
+        <input  type="submit" name="submit" value="Update Password">
+      </form>
     </div>
 
     <button (click)="showEditForm = !showEditForm">Edit</button>

@@ -11,8 +11,8 @@ export class LogOutDirective {
 
   @HostListener("click", ["$event"]) onClick($event) {
     $event.stopPropagation();
-    window.sessionStorage.removeItem('user');
-    window.sessionStorage.removeItem('admin');
+    window.sessionStorage.removeItem('userId');
+    window.sessionStorage.removeItem('adminId');
     this.router.navigate(['/']);
   }
 }

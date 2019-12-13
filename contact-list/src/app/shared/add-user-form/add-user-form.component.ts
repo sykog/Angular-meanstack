@@ -43,7 +43,7 @@ export class AddUserFormComponent implements OnInit {
         password: [this.submitType == 'register' ? '' : 'password'],
         phone: [''],
         role: ['User', [Validators.required]]
-      })
+      });
     }
   }
 
@@ -92,8 +92,14 @@ export class AddUserFormComponent implements OnInit {
 
   updateUserForm() {
     let id = this.route.snapshot.paramMap.get('id');
+    if (window.sessionStorage.getItem('userId')) id = window.sessionStorage.getItem('userId');
     this.formSubscription = this.apiService.updateUser(id, this.userForm.value).subscribe(response => {
-      this.router.navigate(['/admin-home']);
+      if (window.sessionStorage.getItem('userId')) {
+        this.router.navigate(['/user-home']);
+        location.reload();
+      } else {
+        this.router.navigate(['/admin-home']);
+      }
     });
   }
 

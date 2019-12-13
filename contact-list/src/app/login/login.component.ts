@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
+    console.log(window.sessionStorage);
   }
 
   ngOnInit() {
@@ -45,7 +46,6 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       let user = this.admins.filter(admin => {
         if (this.loginForm.value.email == admin.email && this.loginForm.value.password == admin.password) {
-          window.sessionStorage.setItem('adminId', admin.id);
           this.router.navigate(['/admin-home']);
         }
       })
