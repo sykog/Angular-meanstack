@@ -16,6 +16,7 @@ export class AddUserFormComponent implements OnInit {
   @Input() id?;
   userForm: FormGroup;
   formSubscription: Subscription;
+  getSubscription: Subscription;
 
   constructor(private formBuilder: FormBuilder, private router: Router,
               private route: ActivatedRoute, private apiService: ApiService) {
@@ -24,7 +25,7 @@ export class AddUserFormComponent implements OnInit {
   ngOnInit() {
     if (this.submitType == 'update') {
       console.log(this.id);
-      this.apiService.getUser(this.id).subscribe(user => {
+      this.getSubscription = this.apiService.getUser(this.id).subscribe(user => {
         this.userForm = this.formBuilder.group({
           first_name: [user.first_name, [Validators.required]],
           last_name: [user.last_name, [Validators.required]],
@@ -48,6 +49,7 @@ export class AddUserFormComponent implements OnInit {
 
   ngOnDestroy() {
     if (this.formSubscription) this.formSubscription.unsubscribe();
+    if (this.getSubscription) this.getSubscription.unsubscribe();
   }
 
   submitUserForm() {
@@ -76,6 +78,16 @@ export class AddUserFormComponent implements OnInit {
     this.formSubscription = this.apiService.addUser(this.userForm.value).subscribe(response => {
       this.router.navigate(['/user-home']);
     });
+
+    /*const admin = {
+      first_name: this.userForm.value.first_name,
+      last_name: this.userForm.value.last_name,
+      email: this.userForm.value.email,
+      password: this.userForm.value.password
+    }
+    this.formSubscription = this.apiService.addAdmin(admin).subscribe(response => {
+      console.log(admin);
+    });*/
   }
 
   updateUserForm() {

@@ -15,14 +15,15 @@ mongoose.connect(dataBaseConfig.db, {
 );
 
 // Set up express js port
-const userRoute = require('../backend/routes/user.route')
+const userRoute = require('../backend/routes/user.route');
+const adminRoute = require('../backend/routes/admin.route');
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'dist/Angular-meanstack')));
 app.use('/', express.static(path.join(__dirname, 'dist/Angular-meanstack')));
-app.use('/api', userRoute);
+app.use('/api', [userRoute, adminRoute]);
 
 // Create port
 const port = process.env.PORT || 4000;

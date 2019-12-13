@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class UserListComponent implements OnInit {
 
-  users: any = []
+  users: any = [];
   getSubscription: Subscription;
   deleteSubscription: Subscription;
   page: number = 1;
@@ -22,6 +22,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.getUserSubscription();
+    console.log(this.users);
   }
 
   private getUserSubscription = () => {

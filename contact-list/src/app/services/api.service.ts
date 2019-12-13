@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {User} from "../shared/user";
+import {Admin} from "../shared/admin";
 import {catchError, map} from "rxjs/operators";
 import {Observable, throwError} from "rxjs";
 
@@ -46,6 +47,15 @@ export class ApiService {
     let url = this.endpoint + "/delete-user/" + id;
 
     return this.http.delete(url).pipe(catchError(this.manageError));
+  }
+
+  addAdmin(admin: Admin): Observable<any> {
+    let url = this.endpoint + "/add-admin";
+    return this.http.post(url, admin).pipe(catchError(this.manageError));
+  }
+
+  getAdmins() {
+    return this.http.get(this.endpoint + "/admin");
   }
 
   private manageError(error: HttpErrorResponse) {

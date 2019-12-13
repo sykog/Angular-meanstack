@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {ApiService} from "../services/api.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -10,23 +12,49 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm;
+  getSubcription: Subscription;
+  users: any = [];
+  admins: any = [];
+  errorMessage: string;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) {
     this.loginForm = this.formBuilder.group({
-      username: '',
-      password: ''
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     });
   }
 
   ngOnInit() {
+    this.getAdminsAndUsers();
+  }
+
+  private getAdminsAndUsers = () => {
+    this.getSubcription = this.apiService.getUsers().subscribe(users => {
+      this.users = users;
+    });
+    this.getSubcription = this.apiService.getAdmins().subscribe(admins => {
+      this.admins = admins;
+    });
+  }
+
+  ngOnDestroy() {
+    this.getSubcription.unsubscribe();
   }
 
   submitLoginForm(loginData) {
-    if (loginData.username != '' && loginData.password != '') {
-      this.router.navigate(['/admin-home']);
-      this.loginForm.reset();
-    } else {
-      window.alert("Username or password cannot be blank!");
+    if (this.loginForm.valid) {
+      let user = this.admins.filter(admin => {
+        if (this.loginForm.value.email == admin.email && this.loginForm.value.password == admin.password) {
+          this.router.navigate(['/admin-home']);
+        }
+      })
+      this.users.filter(user => {
+        if (this.loginForm.value.email == user.email && this.loginForm.value.password == user.password) {
+          this.router.navigate(['/user-home']);
+        }
+      })
+      this.errorMessage = "Incorrect username or password";
     }
+    this.loginForm.reset();
   }
 }
