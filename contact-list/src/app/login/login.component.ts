@@ -45,11 +45,13 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       let user = this.admins.filter(admin => {
         if (this.loginForm.value.email == admin.email && this.loginForm.value.password == admin.password) {
+          window.sessionStorage.setItem('adminId', admin.id);
           this.router.navigate(['/admin-home']);
         }
       })
       this.users.filter(user => {
         if (this.loginForm.value.email == user.email && this.loginForm.value.password == user.password) {
+          window.sessionStorage.setItem('userId', user._id);
           this.router.navigate(['/user-home']);
         }
       })

@@ -15,6 +15,7 @@ import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { AddUserFormComponent } from './shared/add-user-form/add-user-form.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { RegisterComponent } from './user/register/register.component';
+import { LogOutDirective } from './directives/log-out.directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RegisterComponent } from './user/register/register.component';
     EditUserComponent,
     AddUserFormComponent,
     UserHomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    LogOutDirective
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,26 @@
-<a [routerLink]="['/']">Log Out</a>
+<div class="container">
+  <h2>Welcome, {{user?.first_name}}</h2>
+  <button appLogOut>Log Out</button>
+
+  <div>
+    <h3>User Info</h3>
+    <p><strong>First name:</strong>{{user?.first_name}}</p>
+    <p><strong>Last name:</strong>{{user?.last_name}}</p>
+    <p><strong>Email:</strong>{{user?.email}}</p>
+    <p><strong>Phone:</strong>{{user?.phone}}</p>
+    <p><strong>Role:</strong>{{user?.role}}</p>
+
+    <button (click)="showEditPassword = !showEditPassword">Change Password</button>
+    <br>
+
+    <div *ngIf="showEditPassword">
+      {{user.password}}
+    </div>
+
+    <button (click)="showEditForm = !showEditForm">Edit</button>
+
+    <div *ngIf="showEditForm">
+      <app-add-user-form [submitType]="'update'" [id]="id"></app-add-user-form>
+    </div>
+  </div>
+</div>
