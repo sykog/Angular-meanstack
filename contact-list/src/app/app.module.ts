@@ -12,6 +12,9 @@ import {ApiService} from "./services/api.service";
 import {AddUserComponent} from './user/add-user/add-user.component';
 import {UserListComponent} from './user/user-list/user-list.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
+import { AddUserFormComponent } from './shared/add-user-form/add-user-form.component';
+import { UserHomeComponent } from './user/user-home/user-home.component';
+import { RegisterComponent } from './user/register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { EditUserComponent } from './user/edit-user/edit-user.component';
     HomeComponent,
     AddUserComponent,
     UserListComponent,
-    EditUserComponent
+    EditUserComponent,
+    AddUserFormComponent,
+    UserHomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

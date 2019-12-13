@@ -1,0 +1,30 @@
+<form [formGroup]="userForm" (ngSubmit)="submitUserForm()" novalidate>
+  {{submitType}}
+  <p><i><strong>*Required fields</strong></i></p>
+  <label class="form-control-label mx-auto" for="fname">First Name*</label>
+  <span class="error" *ngIf="handleError('first_name', 'required')">First name is required</span>
+  <input class="form-control" type="text" id="fname" formControlName="first_name">
+
+  <label class="form-control-label mx-auto" for="lname">Last Name*</label>
+  <span class="error" *ngIf="handleError('last_name', 'required')">Last name is required</span>
+  <input class="form-control" type="text" id="lname" formControlName="last_name">
+
+  <label class="form-control-label mx-auto" for="email">Email*</label>
+  <span class="error" *ngIf="handleError('email', 'required')">Email is required</span>
+  <span class="error" *ngIf="handleError('email', 'email')">Invalid email</span>
+  <input class="form-control" type="text" id="email" formControlName="email">
+
+  <div [ngClass]="submitType">
+    <label class="form-control-label mx-auto" for="password">Password</label>
+    <input class="form-control" type="password" id="password" formControlName="password">
+  </div>
+
+  <label class="form-control-label mx-auto" for="phone">Phone</label>
+  <input class="form-control" type="text" id="phone" formControlName="phone">
+
+  <label class="form-control-label mx-auto" for="role">Role*</label>
+  <span class="error" *ngIf="handleError('role', 'required')">Role is required</span>
+  <input class="form-control" type="text" id="role" formControlName="role">
+
+  <input type="submit" name="submit" value="Add User">
+</form>

@@ -22,7 +22,7 @@ userRoute.route('/').get((request, response) => {
 });
 
 // Get user by id
-userRoute.route('/read-user/:id').get((request, response) => {
+userRoute.route('/read-user/:id').get((request, response, next) => {
   User.findById(request.params.id, (error, data) => {
     if (error) return next(error);
     else response.json(data);

@@ -1,0 +1,8 @@
+div.add, div.update {
+  display: none;
+}
+
+span.error {
+  color: red;
+  margin-left: 10px;
+}
