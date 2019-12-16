@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ApiService} from "../../services/api.service";
+import {SHA1} from "crypto-js";
 
 @Component({
   selector: 'app-add-user-form',
@@ -14,7 +15,7 @@ export class AddUserFormComponent implements OnInit {
   @Input() submitType: string;
   // ? is an optional paramter
   @Input() id?;
-  userForm: FormGroup;
+  userForm;
   formSubscription: Subscription;
   getSubscription: Subscription;
 
@@ -54,6 +55,9 @@ export class AddUserFormComponent implements OnInit {
 
   submitUserForm() {
     if (this.userForm.valid) {
+      this.userForm.value = {...this.userForm.value,
+        password: SHA1(this.userForm.value.password).toString()
+      }
       switch (this.submitType) {
         case 'register' :
           this.registerUserForm();
@@ -83,9 +87,9 @@ export class AddUserFormComponent implements OnInit {
       first_name: this.userForm.value.first_name,
       last_name: this.userForm.value.last_name,
       email: this.userForm.value.email,
-      password: this.userForm.value.password
+      password: SHA1(this.userForm.value.password).toString()
     }
-    this.formSubscription = this.apiService.addAdmin(admin).subscribe(response => {
+    this.formSubscription = this.apiService.updateAdmin("5df3b467fbfa67304820320d", admin).subscribe(response => {
       console.log(admin);
     });*/
   }

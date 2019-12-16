@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from "../../services/api.service";
 import {Subscription} from "rxjs";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {SHA1} from "crypto-js";
 
 @Component({
   selector: 'app-user-home',
@@ -41,7 +42,7 @@ export class UserHomeComponent implements OnInit {
     if (this.passwordForm.valid) {
       if (this.passwordForm.value.password == this.passwordForm.value.confirm) {
         this.user = {...this.user,
-          password: this.passwordForm.value.password
+          password: SHA1(this.passwordForm.value.password).toString()
         }
 
         this.passwordSubscription = this.apiService.updateUser(this.id, this.user).subscribe(response => {

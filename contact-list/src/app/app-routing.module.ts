@@ -8,9 +8,10 @@ import {RegisterComponent} from "./user/register/register.component";
 import {UserHomeComponent} from "./user/user-home/user-home.component";
 import {AdminGuardService} from "./services/admin-guard.service";
 import {UserGuardService} from "./services/user-guard.service";
+import {LoginGuardService} from "./services/login-guard.service";
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
+  {path: '', component: LoginComponent, canActivate: [LoginGuardService]},
   {path: 'admin-home', component: HomeComponent, canActivate: [AdminGuardService]},
   {path: 'user-home', component: UserHomeComponent, canActivate: [UserGuardService]},
   {path: 'add-user', component: AddUserComponent, canActivate: [AdminGuardService]},

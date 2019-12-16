@@ -54,6 +54,14 @@ export class ApiService {
     return this.http.post(url, admin).pipe(catchError(this.manageError));
   }
 
+  updateAdmin(id, admin: Admin): Observable<any> {
+    let url = this.endpoint + "/update-admin/" + id;
+
+    return this.http.put(url, admin, {headers: this.headers}).pipe(
+      catchError(this.manageError)
+    );
+  }
+
   getAdmins() {
     return this.http.get(this.endpoint + "/admin");
   }

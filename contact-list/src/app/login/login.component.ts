@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {ApiService} from "../services/api.service";
 import {Subscription} from "rxjs";
+import {SHA1} from "crypto-js";
 
 @Component({
   selector: 'app-login',
@@ -43,18 +44,23 @@ export class LoginComponent implements OnInit {
 
   submitLoginForm(loginData) {
     if (this.loginForm.valid) {
+      this.loginForm.value = {...this.loginForm.value,
+        password: SHA1(this.loginForm.value.password).toString()
+      }
+
       let user = this.admins.filter(admin => {
-        if (this.loginForm.value.email == admin.email && this.loginForm.value.password == admin.password) {
+        if (this.loginForm.value.email, admin.email, this.loginForm.value.password, admin.password) {
           window.sessionStorage.setItem('adminId', admin._id);
           this.router.navigate(['/admin-home']);
         }
-      })
+      });
       this.users.filter(user => {
         if (this.loginForm.value.email == user.email && this.loginForm.value.password == user.password) {
           window.sessionStorage.setItem('userId', user._id);
           this.router.navigate(['/user-home']);
         }
-      })
+      });
+
       this.errorMessage = "Incorrect username or password";
     }
     this.loginForm.reset();
