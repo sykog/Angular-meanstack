@@ -1,37 +1,38 @@
 <div class="container">
   <h2>Welcome, {{user?.first_name}}</h2>
-  <button appLogOut>Log Out</button>
+  <button appLogOut class="logout">Log Out</button>
 
-  <div>
-    <h3>User Info</h3>
-    <p><strong>First name:</strong>{{user?.first_name}}</p>
-    <p><strong>Last name:</strong>{{user?.last_name}}</p>
-    <p><strong>Email:</strong>{{user?.email}}</p>
-    <p><strong>Phone:</strong>{{user?.phone}}</p>
-    <p><strong>Role:</strong>{{user?.role}}</p>
+  <div class="row">
+    <div class="user-info col-12 col-md-6 col-lg-4">
+      <h3>User Info</h3>
+      <p><strong>First name:</strong>{{user?.first_name}}</p>
+      <p><strong>Last name:</strong>{{user?.last_name}}</p>
+      <p><strong>Email:</strong>{{user?.email}}</p>
+      <p><strong>Phone:</strong>{{user?.phone}}</p>
+      <p><strong>Role:</strong>{{user?.role}}</p>
 
-    <button (click)="showEditPassword = !showEditPassword">Change Password</button>
-    <br>
-
-    <div *ngIf="showEditPassword">
-      <form [formGroup]="passwordForm" (ngSubmit)="updatePassword()" novalidate>
-        <p><i><strong>*Required fields</strong></i></p>
-
-        <p *ngIf="passwordError" class="error">Passwords do not match</p>
-        <label class="form-control-label mx-auto" for="password">Password</label>
-        <input class="form-control" type="password" id="password" formControlName="password">
-
-        <label class="form-control-label mx-auto" for="password">Confirm Password</label>
-        <input class="form-control" type="password" id="confirm" formControlName="confirm">
-
-        <input  type="submit" name="submit" value="Update Password">
-      </form>
+      <button (click)="showEditPassword = !showEditPassword">Change Password</button>
+      <button (click)="showEditForm = !showEditForm">Edit</button>
     </div>
 
-    <button (click)="showEditForm = !showEditForm">Edit</button>
-
-    <div *ngIf="showEditForm">
+    <div *ngIf="showEditForm" class="edit-user col-12 col-md-6 col-lg-8">
       <app-add-user-form [submitType]="'update'" [id]="id"></app-add-user-form>
     </div>
+  </div>
+
+
+  <div *ngIf="showEditPassword" class="edit-password col-12 col-md-6 col-lg-4">
+    <form [formGroup]="passwordForm" (ngSubmit)="updatePassword()" novalidate>
+      <p><i><strong>*Required fields</strong></i></p>
+
+      <p *ngIf="passwordError" class="error">Passwords do not match</p>
+      <label class="form-control-label mx-auto" for="password">Password</label>
+      <input class="form-control" type="password" id="password" formControlName="password">
+
+      <label class="form-control-label mx-auto" for="password">Confirm Password</label>
+      <input class="form-control" type="password" id="confirm" formControlName="confirm">
+
+      <input type="submit" name="submit" value="Update Password">
+    </form>
   </div>
 </div>

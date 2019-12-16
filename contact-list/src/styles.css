@@ -1,1 +1,67 @@
 @import '~bootstrap/dist/css/bootstrap.css';
+
+html, body {
+  margin: -10px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #abbfca;
+}
+
+header#mainHeader {
+  width: 100%;
+  background: #CDBCEE;
+  background: linear-gradient(135deg, #CDBCEE 0%, #2893e0 100%);
+  z-index: 10;
+  border-bottom: 3px solid #0070b1;
+}
+
+header#mainHeader h1 {
+  width: max-content;
+  margin: 10px auto;
+  color: white;
+  text-shadow: 0px 0px 5px black;
+}
+
+h2 {
+  width: max-content;
+}
+
+button, input[type="submit"] {
+  backface-visibility: hidden;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+  background: linear-gradient(180deg, #ededed 2%, #8c8c8c 49%, #575757 51%, #8c8c8c 100%);
+  border-radius: 12px;
+  border: 2px solid #0070b1;
+  padding: 6px 20px;
+  color: #fff;
+  font-size: 16px;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4)
+}
+
+button:hover, input[type="submit"]:hover {
+  background: linear-gradient(180deg, #8dcbeb 2%, #2893e0 49%, #206080 51%, #2893e0 100%);
+}
+
+button.logout, a.back-to-login {
+  position: absolute;
+  top: 10px;
+  right: 4%;
+  color: white;
+  font-size: 24px;
+  border: none;
+  background: none;
+  text-shadow: 0px 0px 5px black;
+  text-decoration: none;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+button.logout:hover, a.back-to-login:hover {
+  text-shadow: 0px 0px 5px #cdedf5;
+}

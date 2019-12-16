@@ -6,3 +6,7 @@ span.error {
   color: red;
   margin-left: 10px;
 }
+
+input[type="submit"] {
+  margin-top: 10px;
+}

@@ -1,6 +1,7 @@
 <div class="container">
   <h2>Edit User</h2>
-  <a [routerLink]="['/admin-home']">Home</a>
+  <button class="logout" appLogOut>Log Out</button>
+  <button [routerLink]="['/admin-home']">Home</button>
 
   <app-add-user-form [submitType]="'update'" [id]="id"></app-add-user-form>
 </div>
